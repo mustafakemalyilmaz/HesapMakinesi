@@ -1,33 +1,35 @@
-﻿namespace HesapMakinesi
+﻿using System;
+
+namespace HesapMakinesi
 {
     class Operation
     {
-        public string firstTerm;
-        public string secondTerm;
-        public string firstOrSecond; // first true, second false
+        public string firstTerm = "";
+        public string oprSign = "";         // "+", "-", "x", "/", "%", "sq", "sqrt"
+        public string secondTerm = "";
+        public string whatToRead = "new";     // "I", "II", "new"
+        public double result;
 
-
-        public double operationResult(double first, double second, string sign)
+        public double oprResult(double first, string sign, double second)
         {
-            if (sign == "+")
+            switch (sign)
             {
-                return first + second;
-            } else if (sign == "-")
-            {
-                return first - second;
-            } else if (sign == "x")
-            {
-                return first * second;
-            } else if (sign == "/")
-            {
-                return first / second;
-
-            } else
-            {
-                return (first / second) * 100;
+                case "+":
+                    return first + second;
+                case "-":
+                    return first - second;
+                case "x":
+                case "sq":
+                    return first * second;
+                case "/":
+                    return first / second;
+                case "%":
+                    return (first / second) * 100;
+                case "sqrt":
+                    return Math.Sqrt(first);
+                default:
+                    return 0;
             }
-
         }
-
     }
 }
